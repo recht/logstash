@@ -39,6 +39,7 @@ GEM
     crack (0.1.8)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    dogstatsd-ruby (1.2.0)
     edn (1.0.2)
       parslet (~> 1.4.0)
     elasticsearch (0.4.1)
@@ -117,6 +118,9 @@ GEM
       multi_json (>= 1.5)
     launchy (2.4.2)
       addressable (~> 2.3)
+    launchy (2.4.2-java)
+      addressable (~> 2.3)
+      spoon (~> 0.0.1)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -213,7 +217,6 @@ GEM
     snmp (1.1.1)
     spoon (0.0.4)
       ffi
-    statsd-ruby (1.2.0)
     stud (0.0.17)
       ffi
       metriks
@@ -259,6 +262,7 @@ DEPENDENCIES
   cinch
   clamp
   coveralls
+  dogstatsd-ruby (= 1.2.0)
   edn
   elasticsearch
   extlib (= 0.9.16)
@@ -312,7 +316,6 @@ DEPENDENCIES
   sinatra
   snmp
   spoon
-  statsd-ruby (= 1.2.0)
   stud
   twitter (= 5.0.0.rc.1)
   user_agent_parser (>= 2.0.0)

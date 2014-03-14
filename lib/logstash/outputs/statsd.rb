@@ -68,6 +68,9 @@ class LogStash::Outputs::Statsd < LogStash::Outputs::Base
   # Enable debugging output?
   config :debug, :validate => :boolean, :default => false
 
+  # Add datadog tags. tags as array.
+  config :dd_tags, :validate => :array, :default => []
+
   public
   def register
     require "statsd"
@@ -83,27 +86,28 @@ class LogStash::Outputs::Statsd < LogStash::Outputs::Base
     sender = event.sprintf(@sender)
     @logger.debug? and @logger.debug("Munged sender: #{sender}")
     @logger.debug? and @logger.debug("Event: #{event}")
+    @dd_tags = @dd_tags.map { |tag| event.sprintf(tag) }
     @increment.each do |metric|
-      @client.increment(build_stat(event.sprintf(metric), sender), @sample_rate)
+      @client.increment(build_stat(event.sprintf(metric), sender), :sample_rate => @sample_rate, :tags => @dd_tags)
     end
     @decrement.each do |metric|
-      @client.decrement(build_stat(event.sprintf(metric), sender), @sample_rate)
+      @client.decrement(build_stat(event.sprintf(metric), sender), :sample_rate => @sample_rate, :tags => @dd_tags)
     end
     @count.each do |metric, val|
       @client.count(build_stat(event.sprintf(metric), sender),
-                    event.sprintf(val).to_f, @sample_rate)
+                    event.sprintf(val).to_f, :sample_rage => @sample_rate, :tags => @dd_tags)
     end
     @timing.each do |metric, val|
       @client.timing(build_stat(event.sprintf(metric), sender),
-                     event.sprintf(val).to_f, @sample_rate)
+                     event.sprintf(val).to_f, :sample_rate => @sample_rate, :tags => @dd_tags)
     end
     @set.each do |metric, val|
       @client.set(build_stat(event.sprintf(metric), sender),
-                    event.sprintf(val), @sample_rate)
+                    event.sprintf(val), :sample_rate => @sample_rate, :tags => @dd_tags)
     end
     @gauge.each do |metric, val|
       @client.gauge(build_stat(event.sprintf(metric), sender),
-                    event.sprintf(val).to_f, @sample_rate)
+                    event.sprintf(val).to_f, :sample_rate => @sample_rate, :tags => @dd_tags)
     end
   end # def receive
 
