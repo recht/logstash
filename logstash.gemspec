@@ -46,7 +46,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "mail"                             #(MIT license)
   gem.add_runtime_dependency "metriks"                          #(MIT license)
   gem.add_runtime_dependency "redis"                            #(MIT license)
-  gem.add_runtime_dependency "statsd-ruby", ["1.2.0"]           #(MIT license)
+  gem.add_runtime_dependency "dogstatsd-ruby", ["1.2.0"]        #(MIT license)
   gem.add_runtime_dependency "xml-simple"                       #(ruby license?)
   gem.add_runtime_dependency "xmpp4r", ["0.5"]                  #(ruby license)
   gem.add_runtime_dependency "jls-lumberjack", [">=0.0.20"]     #(Apache 2.0 license)

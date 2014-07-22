@@ -129,7 +129,7 @@ GEM
     snmp (1.1.1)
     spoon (0.0.4)
       ffi
-    statsd-ruby (1.2.0)
+    dogstatsd-ruby (1.2.0)
     stud (0.0.17)
       ffi
       metriks
@@ -206,7 +206,7 @@ DEPENDENCIES
   shoulda
   snmp
   spoon
-  statsd-ruby (= 1.2.0)
+  dogstatsd-ruby (= 1.2.0)
   stud
   twitter (= 5.0.0.rc.1)
   user_agent_parser (>= 2.0.0)
